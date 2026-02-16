@@ -1,0 +1,31 @@
+.testimonials {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+.testimonial {
+    width: 30%;
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.testimonial__text {
+    font-style: italic;
+    margin-bottom: 24px;
+    flex-grow: 1;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.testimonial__author {
+    font-weight: bold;
+    margin-top: auto;
+    color: #2c3e50;
+}

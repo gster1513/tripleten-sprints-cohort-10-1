@@ -1,0 +1,106 @@
+h1 {
+    font-size: 30px;
+    text-align: center;
+}
+
+p {
+    color: rgb(4, 62, 113);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+blockquote {
+    font-style: italic;
+    color: #555;
+    margin-left: 20px;
+    border-left: 4px solid #ccc;
+    padding-left: 10px;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+
+.p-14 {
+    padding: 14px;
+}
+
+/* FLEX BOX CLASSES */
+.flex-container {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+/* UTILITY CLASSES */
+/* Atomic Classes - one class affects only one modifier*/
+
+.display-flex {
+    display: flex;
+}
+
+.justify-start {
+    justify-content: start;
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+thead {
+    background-color: #eaeaea;
+}
+
+table caption {
+    text-align: left;
+    font-size: 24px;
+    padding: 16px 20px 12px;
+}
+
+table th,
+table td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: rgb(203, 117, 246);
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: rgb(225, 225, 225);
+}
+
+.summary {
+    background-color: gold;
+    color: black;
+    text-align: center;
+}
+
+#banner {
+    height: 350px;
+    width: 100%;
+    background-image: url('../images/gray-city.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

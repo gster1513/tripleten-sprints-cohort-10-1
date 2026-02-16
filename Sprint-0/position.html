@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/styles/index.css">
+    <style>
+
+        .position-container {
+            border: 5px dashed #333;
+            padding: 20px;
+            margin: 20px auto;
+            position: relative;
+            height: 550px;
+        }
+
+        body {
+            height: 2000px;
+        }
+        .box {
+            width: 25%;
+            height: 25%;            
+            text-align: center;
+            line-height: 200px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .box--1{
+            background-color: rgb(0, 149, 255);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .box--2{
+            background-color: rgb(217, 70, 70);
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .box--3{
+            background-color: rgb(71, 201, 71);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2cedff;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- <header class="fixed-header">
+        <h2>Fixed Header - Stays at top when scrolling</h2>
+    </header> -->
+    <main class="position-container">
+        <div class="box box--1">box 1</div>
+        <div class="box box--2">box 2</div>
+        <div class="box box--3">box 3</div>
+    </main>
+</body>
+</html>

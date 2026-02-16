@@ -1,0 +1,32 @@
+.features {
+    padding: 60px 0;
+    background-color: #fff;
+    position: relative;
+}
+
+.feature-card {
+    width: 30%;
+    background-color: #f8f9fa;
+    padding: 16px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card__icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+    position: relative;
+    display: inline-block;
+}
+
+.feature-card__title {
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #2c3e50;
+}
+
+.feature-card__description {
+    font-size: 16px;
+    color: #555;
+}

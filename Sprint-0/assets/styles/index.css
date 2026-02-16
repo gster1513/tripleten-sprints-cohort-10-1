@@ -1,0 +1,6 @@
+@import url("./reset.css");
+@import url("./base.css");
+/*Importing features styles*/
+@import url("../../features/navbar/navbar.css");
+@import url("../../features/product-card/product-card.css");
+@import url("../../features/button/button.css");
