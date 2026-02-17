@@ -1,22 +1,1209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Original Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Miga Bakery — Baked with Love</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ── Reset & Tokens ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clr-primary:   #7B3F00;
+      --clr-secondary: #C87941;
+      --clr-accent:    #F2C97E;
+      --clr-bg:        #FFF9F2;
+      --clr-surface:   #FFFFFF;
+      --clr-text:      #2E1503;
+      --clr-muted:     #7A6050;
+      --clr-light:     #F8EDE0;
+
+      --ff-serif: 'Playfair Display', Georgia, serif;
+      --ff-sans:  'Lato', system-ui, sans-serif;
+
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,.08);
+      --shadow-hover: 0 8px 32px rgba(0,0,0,.14);
+
+      --transition: .25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-sans);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      line-height: 1.65;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ── Utility ────────────────────────────────────────────────── */
+    .container { max-width: 1160px; margin-inline: auto; padding-inline: 24px; }
+    .section    { padding-block: 96px; }
+    .section--alt { background: var(--clr-light); }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--ff-sans);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--clr-secondary);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--ff-serif);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.2;
+      color: var(--clr-primary);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--clr-muted);
+      max-width: 540px;
+    }
+
+    .section-header { margin-bottom: 56px; }
+    .section-header--center { text-align: center; }
+    .section-header--center .section-subtitle { margin-inline: auto; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: var(--ff-sans);
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .btn--primary {
+      background: var(--clr-primary);
+      color: #fff;
+    }
+    .btn--primary:hover {
+      background: var(--clr-secondary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--clr-primary);
+      border-color: var(--clr-primary);
+    }
+    .btn--outline:hover {
+      background: var(--clr-primary);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ── Navigation ─────────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 249, 242, .92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(123,63,0,.1);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav__logo {
+      font-family: var(--ff-serif);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--clr-primary);
+    }
+
+    .nav__logo span { color: var(--clr-secondary); }
+
+    .nav__links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--clr-muted);
+      letter-spacing: .04em;
+      transition: color var(--transition);
+    }
+
+    .nav__links a:hover { color: var(--clr-primary); }
+
+    .nav__cta { margin-left: 24px; }
+
+    /* ── Hero ───────────────────────────────────────────────────── */
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 48px;
+      padding-block: 80px;
+    }
+
+    .hero__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--clr-accent);
+      color: var(--clr-primary);
+      font-size: .8rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+
+    .hero__title {
+      font-family: var(--ff-serif);
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      line-height: 1.15;
+      color: var(--clr-primary);
+      margin-bottom: 20px;
+    }
+
+    .hero__title em { color: var(--clr-secondary); font-style: italic; }
+
+    .hero__desc {
+      font-size: 1.1rem;
+      color: var(--clr-muted);
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+
+    .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .hero__stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(123,63,0,.12);
+    }
+
+    .stat__number {
+      font-family: var(--ff-serif);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+      line-height: 1;
+    }
+
+    .stat__label {
+      font-size: .8rem;
+      color: var(--clr-muted);
+      margin-top: 4px;
+    }
+
+    /* Hero visual */
+    .hero__visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero__image-wrap {
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #F2C97E 0%, #C87941 60%, #7B3F00 100%);
+      border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10rem;
+      animation: morph 8s ease-in-out infinite;
+      box-shadow: var(--shadow-hover);
+    }
+
+    @keyframes morph {
+      0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+      33%       { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; }
+      66%       { border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%; }
+    }
+
+    .hero__badge {
+      position: absolute;
+      bottom: 48px;
+      left: -16px;
+      background: var(--clr-surface);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero__badge-icon { font-size: 2rem; }
+
+    .hero__badge-text strong {
+      display: block;
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      color: var(--clr-primary);
+    }
+
+    .hero__badge-text span {
+      font-size: .78rem;
+      color: var(--clr-muted);
+    }
+
+    /* ── Marquee ────────────────────────────────────────────────── */
+    .marquee {
+      background: var(--clr-primary);
+      color: var(--clr-accent);
+      overflow: hidden;
+      padding-block: 14px;
+    }
+
+    .marquee__track {
+      display: flex;
+      gap: 48px;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee__item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--ff-serif);
+      font-size: .95rem;
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Products ───────────────────────────────────────────────── */
+    .products__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--clr-surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card__image {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+
+    .card__body { padding: 20px 24px 24px; }
+
+    .card__category {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--clr-secondary);
+      margin-bottom: 6px;
+    }
+
+    .card__title {
+      font-family: var(--ff-serif);
+      font-size: 1.2rem;
+      color: var(--clr-primary);
+      margin-bottom: 8px;
+    }
+
+    .card__desc {
+      font-size: .88rem;
+      color: var(--clr-muted);
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+
+    .card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card__price {
+      font-family: var(--ff-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--clr-primary);
+    }
+
+    .card__add {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--clr-primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .card__add:hover { background: var(--clr-secondary); transform: scale(1.12); }
+
+    /* ── About ──────────────────────────────────────────────────── */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .about__visual {
+      position: relative;
+    }
+
+    .about__img-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(160deg, var(--clr-accent) 0%, var(--clr-secondary) 100%);
+      border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+    }
+
+    .about__img-accent {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      width: 160px;
+      height: 160px;
+      background: var(--clr-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      border: 6px solid var(--clr-bg);
+    }
+
+    .about__body .section-subtitle { margin-bottom: 28px; }
+
+    .about__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .about__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: .95rem;
+      color: var(--clr-muted);
+    }
+
+    .about__list li::before {
+      content: '✦';
+      color: var(--clr-secondary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Features ───────────────────────────────────────────────── */
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 28px;
+    }
+
+    .feature-card {
+      background: var(--clr-surface);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition);
+    }
+
+    .feature-card:hover { transform: translateY(-4px); }
+
+    .feature-card__icon {
+      font-size: 3rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-card__title {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      color: var(--clr-primary);
+      margin-bottom: 10px;
+    }
+
+    .feature-card__desc {
+      font-size: .87rem;
+      color: var(--clr-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Testimonials ───────────────────────────────────────────── */
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .testimonial {
+      background: var(--clr-surface);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '\201C';
+      font-family: var(--ff-serif);
+      font-size: 5rem;
+      color: var(--clr-accent);
+      position: absolute;
+      top: 8px;
+      left: 24px;
+      line-height: 1;
+    }
+
+    .testimonial__text {
+      font-size: .95rem;
+      color: var(--clr-muted);
+      line-height: 1.7;
+      margin-top: 32px;
+      margin-bottom: 24px;
+    }
+
+    .testimonial__author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testimonial__avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      background: var(--clr-light);
+      flex-shrink: 0;
+    }
+
+    .testimonial__name {
+      font-family: var(--ff-serif);
+      font-size: 1rem;
+      color: var(--clr-primary);
+    }
+
+    .testimonial__role {
+      font-size: .78rem;
+      color: var(--clr-muted);
+    }
+
+    .stars { color: #F5A623; font-size: .85rem; letter-spacing: 2px; }
+
+    /* ── CTA Banner ─────────────────────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-secondary) 100%);
+      padding-block: 80px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta-banner .eyebrow { color: var(--clr-accent); }
+
+    .cta-banner__title {
+      font-family: var(--ff-serif);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .cta-banner__sub {
+      color: rgba(255,255,255,.75);
+      font-size: 1rem;
+      margin-bottom: 36px;
+    }
+
+    .cta-banner .btn--outline {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    .cta-banner .btn--outline:hover {
+      background: #fff;
+      color: var(--clr-primary);
+    }
+
+    /* ── Newsletter ─────────────────────────────────────────────── */
+    .newsletter__form {
+      display: flex;
+      gap: 12px;
+      max-width: 460px;
+      margin-inline: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter__input {
+      flex: 1;
+      min-width: 220px;
+      padding: 14px 20px;
+      border-radius: 50px;
+      border: none;
+      font-family: var(--ff-sans);
+      font-size: .95rem;
+      outline: none;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────────── */
+    .footer {
+      background: var(--clr-text);
+      color: rgba(255,255,255,.7);
+      padding-block: 64px 32px;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer__logo {
+      font-family: var(--ff-serif);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .footer__logo span { color: var(--clr-accent); }
+
+    .footer__desc { font-size: .88rem; line-height: 1.7; margin-bottom: 24px; }
+
+    .footer__socials { display: flex; gap: 12px; }
+
+    .footer__social-link {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background var(--transition);
+    }
+
+    .footer__social-link:hover { background: var(--clr-secondary); }
+
+    .footer__heading {
+      font-family: var(--ff-serif);
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .footer__links a {
+      font-size: .88rem;
+      color: rgba(255,255,255,.6);
+      transition: color var(--transition);
+    }
+
+    .footer__links a:hover { color: var(--clr-accent); }
+
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .82rem;
+    }
+
+    .footer__bottom a { color: var(--clr-accent); }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero         { grid-template-columns: 1fr; text-align: center; }
+      .hero__desc   { margin-inline: auto; }
+      .hero__actions{ justify-content: center; }
+      .hero__stats  { justify-content: center; }
+      .hero__visual { display: none; }
+      .about__grid  { grid-template-columns: 1fr; }
+      .about__visual{ display: none; }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+      .nav__links   { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .section      { padding-block: 64px; }
+      .footer__grid { grid-template-columns: 1fr; }
+      .footer__bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-    <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis nulla voluptate, deserunt similique sint minima officia, dignissimos aliquam repudiandae accusantium ratione vero at quaerat, tempora commodi ut magnam numquam nisi.
-    </p>
-    <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis nulla voluptate, deserunt similique sint minima officia, dignissimos aliquam repudiandae accusantium ratione vero at quaerat, tempora commodi ut magnam numquam nisi.
-    </p>
-    <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis nulla voluptate, deserunt similique sint minima officia, dignissimos aliquam repudiandae accusantium ratione vero at quaerat, tempora commodi ut magnam numquam nisi.
-    </p>
-    <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis nulla voluptate, deserunt similique sint minima officia, dignissimos aliquam repudiandae accusantium ratione vero at quaerat, tempora commodi ut magnam numquam nisi.
-    </p>
+
+  <!-- ════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════ -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a class="nav__logo" href="index.html">La <span>Miga</span></a>
+
+        <nav>
+          <ul class="nav__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Our Menu</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <a class="btn btn--primary nav__cta" href="contact.html">Order Now</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ════════════════════════════════════
+       HERO
+  ════════════════════════════════════ -->
+  <main>
+    <section class="section" style="padding-top: 56px;">
+      <div class="container">
+        <div class="hero">
+
+          <!-- Copy -->
+          <div class="hero__copy">
+            <div class="hero__tag">
+              🌾 Handcrafted Every Morning
+            </div>
+            <h1 class="hero__title">
+              Baked with Love,<br>
+              <em>Served with Joy</em>
+            </h1>
+            <p class="hero__desc">
+              Artisan breads, pastries, and cakes made from scratch using
+              time-honored recipes and the finest local ingredients. Fresh from
+              our oven to your table, every single day.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="features.html">Explore Our Menu</a>
+              <a class="btn btn--outline" href="about-us.html">Our Story</a>
+            </div>
+            <div class="hero__stats">
+              <div>
+                <div class="stat__number">18+</div>
+                <div class="stat__label">Years of craft</div>
+              </div>
+              <div>
+                <div class="stat__number">60+</div>
+                <div class="stat__label">Daily recipes</div>
+              </div>
+              <div>
+                <div class="stat__number">4.9★</div>
+                <div class="stat__label">Customer rating</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual -->
+          <div class="hero__visual">
+            <div class="hero__image-wrap">🍞</div>
+            <div class="hero__badge">
+              <div class="hero__badge-icon">🏆</div>
+              <div class="hero__badge-text">
+                <strong>Award Winning</strong>
+                <span>Best Bakery 2024</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         MARQUEE
+    ════════════════════════════════════ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <!-- Duplicated for seamless loop -->
+        <span class="marquee__item">🥐 Croissants</span>
+        <span class="marquee__item">🍰 Cakes</span>
+        <span class="marquee__item">🍞 Sourdough</span>
+        <span class="marquee__item">🧁 Cupcakes</span>
+        <span class="marquee__item">🥖 Baguettes</span>
+        <span class="marquee__item">🍩 Donuts</span>
+        <span class="marquee__item">🎂 Custom Cakes</span>
+        <span class="marquee__item">🥨 Pretzels</span>
+        <span class="marquee__item">🍪 Cookies</span>
+        <span class="marquee__item">☕ Coffee</span>
+        <span class="marquee__item">🥐 Croissants</span>
+        <span class="marquee__item">🍰 Cakes</span>
+        <span class="marquee__item">🍞 Sourdough</span>
+        <span class="marquee__item">🧁 Cupcakes</span>
+        <span class="marquee__item">🥖 Baguettes</span>
+        <span class="marquee__item">🍩 Donuts</span>
+        <span class="marquee__item">🎂 Custom Cakes</span>
+        <span class="marquee__item">🥨 Pretzels</span>
+        <span class="marquee__item">🍪 Cookies</span>
+        <span class="marquee__item">☕ Coffee</span>
+      </div>
+    </div>
+
+
+    <!-- ════════════════════════════════════
+         FEATURED PRODUCTS
+    ════════════════════════════════════ -->
+    <section class="section" id="menu">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <span class="eyebrow">Today's Picks</span>
+          <h2 class="section-title">Fresh From the Oven</h2>
+          <p class="section-subtitle">
+            Every item is baked fresh in small batches throughout the day.
+            Come early — popular items sell out fast!
+          </p>
+        </div>
+
+        <div class="products__grid">
+
+          <article class="card">
+            <div class="card__image" style="background: linear-gradient(135deg,#FDE8C8,#F2C97E);">
+              🥐
+            </div>
+            <div class="card__body">
+              <p class="card__category">Pastries</p>
+              <h3 class="card__title">Butter Croissant</h3>
+              <p class="card__desc">
+                Layers of golden, flaky perfection made with real French butter
+                and 48-hour laminated dough.
+              </p>
+              <div class="card__footer">
+                <span class="card__price">$3.50</span>
+                <button class="card__add" aria-label="Add Butter Croissant to cart">+</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__image" style="background: linear-gradient(135deg,#F4D9B0,#D2A06A);">
+              🍞
+            </div>
+            <div class="card__body">
+              <p class="card__category">Breads</p>
+              <h3 class="card__title">Country Sourdough</h3>
+              <p class="card__desc">
+                Our signature long-fermented sourdough with a crackly crust
+                and open crumb. Naturally leavened, zero additives.
+              </p>
+              <div class="card__footer">
+                <span class="card__price">$9.00</span>
+                <button class="card__add" aria-label="Add Country Sourdough to cart">+</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__image" style="background: linear-gradient(135deg,#FDDDE6,#F9A8C0);">
+              🧁
+            </div>
+            <div class="card__body">
+              <p class="card__category">Sweets</p>
+              <h3 class="card__title">Raspberry Cupcake</h3>
+              <p class="card__desc">
+                Light vanilla sponge topped with house-made raspberry Swiss
+                meringue buttercream and fresh berries.
+              </p>
+              <div class="card__footer">
+                <span class="card__price">$4.25</span>
+                <button class="card__add" aria-label="Add Raspberry Cupcake to cart">+</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__image" style="background: linear-gradient(135deg,#E8D5B7,#C4945A);">
+              🥖
+            </div>
+            <div class="card__body">
+              <p class="card__category">Breads</p>
+              <h3 class="card__title">Classic Baguette</h3>
+              <p class="card__desc">
+                Thin, crispy crust with a soft, chewy interior. Baked three
+                times a day so it's always fresh. A staple of la Miga.
+              </p>
+              <div class="card__footer">
+                <span class="card__price">$4.00</span>
+                <button class="card__add" aria-label="Add Classic Baguette to cart">+</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__image" style="background: linear-gradient(135deg,#D9E8C8,#8AB87A);">
+              🎂
+            </div>
+            <div class="card__body">
+              <p class="card__category">Celebration</p>
+              <h3 class="card__title">Custom Layer Cake</h3>
+              <p class="card__desc">
+                Built to order in any flavor combination. Perfect for birthdays,
+                weddings, and any moment worth celebrating.
+              </p>
+              <div class="card__footer">
+                <span class="card__price">From $45</span>
+                <button class="card__add" aria-label="Add Custom Layer Cake to cart">+</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__image" style="background: linear-gradient(135deg,#FDF0D5,#E8B84B);">
+              🍪
+            </div>
+            <div class="card__body">
+              <p class="card__category">Sweets</p>
+              <h3 class="card__title">Brown Butter Cookie</h3>
+              <p class="card__desc">
+                Crisp edges, gooey center, loaded with dark chocolate chips
+                and a sprinkle of flaky sea salt. Irresistible.
+              </p>
+              <div class="card__footer">
+                <span class="card__price">$3.00</span>
+                <button class="card__add" aria-label="Add Brown Butter Cookie to cart">+</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div style="text-align:center; margin-top: 48px;">
+          <a class="btn btn--outline" href="features.html">View Full Menu</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         ABOUT
+    ════════════════════════════════════ -->
+    <section class="section section--alt" id="about">
+      <div class="container">
+        <div class="about__grid">
+
+          <div class="about__visual">
+            <div class="about__img-main">👩‍🍳</div>
+            <div class="about__img-accent">🌿</div>
+          </div>
+
+          <div class="about__body">
+            <span class="eyebrow">Our Story</span>
+            <h2 class="section-title">Tradition Baked Into Every Loaf</h2>
+            <p class="section-subtitle" style="margin-bottom:20px;">
+              La Miga was born in 2006 from a simple belief: great bread is the
+              foundation of every good meal, and everyone deserves access to it.
+            </p>
+            <ul class="about__list">
+              <li>We source flour from family-run mills within 150 miles of our bakery.</li>
+              <li>All our starters are over a decade old, giving our breads unmatched depth of flavor.</li>
+              <li>We use no artificial preservatives, colorants, or shortcuts — ever.</li>
+              <li>Our bakers arrive at 4 AM so you get the freshest product by opening time.</li>
+            </ul>
+            <a class="btn btn--primary" href="about-us.html">Meet the Team</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         FEATURES / WHY US
+    ════════════════════════════════════ -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <span class="eyebrow">Why La Miga</span>
+          <h2 class="section-title">The La Miga Difference</h2>
+          <p class="section-subtitle">
+            We put the same care into every bun as we do into every wedding cake.
+          </p>
+        </div>
+
+        <div class="features__grid">
+          <div class="feature-card">
+            <div class="feature-card__icon">🌾</div>
+            <h3 class="feature-card__title">All-Natural Ingredients</h3>
+            <p class="feature-card__desc">
+              No additives, no shortcuts. Just flour, water, salt, and time — the way it was always meant to be.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon">🕓</div>
+            <h3 class="feature-card__title">Baked Fresh Daily</h3>
+            <p class="feature-card__desc">
+              Our ovens run from 4 AM. If it's not baked today, we don't sell it — freshness guaranteed.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon">🚲</div>
+            <h3 class="feature-card__title">Local Delivery</h3>
+            <p class="feature-card__desc">
+              Fresh pastries delivered to your door every morning within a 5-mile radius.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon">🎂</div>
+            <h3 class="feature-card__title">Custom Orders</h3>
+            <p class="feature-card__desc">
+              We collaborate with you to build the perfect cake or bread for every occasion.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         TESTIMONIALS
+    ════════════════════════════════════ -->
+    <section class="section section--alt" id="reviews">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <span class="eyebrow">Happy Customers</span>
+          <h2 class="section-title">What Our Regulars Say</h2>
+        </div>
+
+        <div class="testimonials__grid">
+
+          <blockquote class="testimonial">
+            <p class="testimonial__text">
+              "The sourdough from La Miga has completely ruined every other bread for me.
+              I drive 20 minutes out of my way just to get a loaf every Sunday morning."
+            </p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">👩</div>
+              <div>
+                <div class="testimonial__name">Maria Gonzalez</div>
+                <div class="testimonial__role">Loyal customer since 2011</div>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+          </blockquote>
+
+          <blockquote class="testimonial">
+            <p class="testimonial__text">
+              "We ordered our wedding cake from La Miga and it was the centerpiece of the evening.
+              Not only stunning but genuinely the best cake our guests had ever tasted."
+            </p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">👨</div>
+              <div>
+                <div class="testimonial__name">James & Sofia Patel</div>
+                <div class="testimonial__role">Newlyweds, October 2023</div>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+          </blockquote>
+
+          <blockquote class="testimonial">
+            <p class="testimonial__text">
+              "I've been a pastry chef for 15 years and La Miga's croissants are legitimately
+              on par with the best I've had in Paris. That is not something I say lightly."
+            </p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">👨‍🍳</div>
+              <div>
+                <div class="testimonial__name">Chef Daniel Moreau</div>
+                <div class="testimonial__role">Executive Chef, Bistro 42</div>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+          </blockquote>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         CTA BANNER
+    ════════════════════════════════════ -->
+    <section class="cta-banner">
+      <div class="container">
+        <span class="eyebrow">Limited Slots Available</span>
+        <h2 class="cta-banner__title">Place a Custom Order for Your Next Event</h2>
+        <p class="cta-banner__sub">
+          Weddings, birthdays, corporate events — we make every occasion sweeter.
+          Reach out at least 72 hours in advance.
+        </p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a class="btn btn--outline" href="contact.html">Get in Touch</a>
+          <a class="btn btn--primary" href="features.html" style="background:#fff;color:var(--clr-primary);">Browse Menu</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════
+         NEWSLETTER
+    ════════════════════════════════════ -->
+    <section class="section" id="newsletter">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <span class="eyebrow">Stay in the Loop</span>
+          <h2 class="section-title">Get Weekly Specials in Your Inbox</h2>
+          <p class="section-subtitle">
+            Be the first to know about seasonal items, limited-edition flavors,
+            and exclusive promotions. No spam, ever.
+          </p>
+        </div>
+        <form class="newsletter__form" onsubmit="return false;">
+          <input
+            class="newsletter__input"
+            type="email"
+            placeholder="your@email.com"
+            aria-label="Email address"
+          />
+          <button class="btn btn--primary" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Brand -->
+        <div>
+          <div class="footer__logo">La <span>Miga</span></div>
+          <p class="footer__desc">
+            Artisan bakery in the heart of the city since 2006. Baked fresh
+            every morning with love, local ingredients, and zero compromises.
+          </p>
+          <div class="footer__socials">
+            <a class="footer__social-link" href="#" aria-label="Instagram">📸</a>
+            <a class="footer__social-link" href="#" aria-label="Facebook">📘</a>
+            <a class="footer__social-link" href="#" aria-label="TikTok">🎵</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer__heading">Explore</h4>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Our Menu</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Products -->
+        <div>
+          <h4 class="footer__heading">Products</h4>
+          <ul class="footer__links">
+            <li><a href="features.html">Breads</a></li>
+            <li><a href="features.html">Pastries</a></li>
+            <li><a href="features.html">Cakes & Sweets</a></li>
+            <li><a href="features.html">Custom Orders</a></li>
+          </ul>
+        </div>
+
+        <!-- Hours -->
+        <div>
+          <h4 class="footer__heading">Visit Us</h4>
+          <ul class="footer__links">
+            <li>123 Wheat Street</li>
+            <li>New York, NY 10001</li>
+            <li style="margin-top:8px;">Mon–Fri: 7 AM – 6 PM</li>
+            <li>Sat–Sun: 7 AM – 4 PM</li>
+            <li style="margin-top:8px;">
+              <a href="contact.html">hello@lamiga.com</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2024 La Miga Bakery. All rights reserved.</span>
+        <span>
+          <a href="#">Privacy Policy</a> &nbsp;·&nbsp;
+          <a href="#">Terms of Service</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
