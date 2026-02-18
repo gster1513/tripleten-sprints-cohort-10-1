@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes slide-in {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes move-item {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(450px);
+                background-color: cyan;
+            }
+
+            50% {
+                transform: translate(450px, 450px);
+                background-color: magenta;
+            }
+
+            75% {
+                transform: translate(0, 450px);
+                background-color: tomato;
+            }
+
+            100% {
+                transform: translate(0,0);
+                background-color: royalblue;
+            }
+        }
+
+        .animated {
+            width: 150px;
+            height: 150px;
+            background-color: royalblue;
+            animation: move-item 8s ease-in-out;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <div class="animated"></div>
+    
+</body>
+</html>
