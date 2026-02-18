@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            /* background-color: #C87941; */
+            background: linear-gradient(to bottom,#361711, #C87941, #F8EDE0);
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #F8EDE0;
+            padding: 20px;
+        }
+
+        .content__title {
+            font-size: 86px;
+            margin-bottom: 16px;
+            background-image: linear-gradient(to bottom, #7B3F00, #C87941);
+            background-clip: text;
+            color: transparent;
+        }
+        .content__description {
+            font-size: 18px;
+            color: #7B3F00;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .content__videos {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .video__item {
+            width: 48%;
+            padding: 24px;
+            /* border: 1px solid #7B3F00;
+            background-color:#FFF9F2; */
+            border-radius: 8px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            margin-left: 4px;
+            margin-right: 4px;
+            box-shadow: 
+                0px 2px 6px rgba(125, 53, 39, 0.2),
+                0px 8px 22px rgba(125, 53, 39, 0.2);
+            background: radial-gradient(circle at bottom right, #FFF9F2, #ffdfc0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .video__item>iframe {
+            width: 100%;
+            height: 315px;
+            margin-bottom: 8px;
+        }
+
+        .video_details {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .video__item:hover {
+            /* transform: translateX(50px); 50px to right */
+            /* transform: translateY(20px); 20px to down */
+            /* transform: translate(30px, -40px); */
+            /* transform: rotate(-45deg); */
+            /* transform: scale(0.5) */
+            /* transform: skewX(20deg); */
+            /* transform:  scale(1.2); */
+        }
+
+        .video__btn {
+            padding: 8px 16px;
+            background-color: #7B3F00;
+            color: #FFF9F2;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s linear;
+            /* transition-property: background-color;
+            transition-delay: 0.5s;
+            transition-timing-function: ease; */
+        }
+
+        .video__footer {
+            margin-top: 12px;
+        }
+
+        .video__btn:hover {
+            background-color: #C87941;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section class="container">
+        <div class="content">
+            <div class="content__header">
+                <h1 class="content__title">Our Bests Recipes</h1>
+                <p class="content__description">
+                    We have the best recipes for you to try, and we are sure that you will love them. We have a wide
+                    variety of recipes, from desserts to main courses, and we are sure that you will find something that
+                    you will love. We have a team of chefs that are always looking for new recipes to add to our
+                    collection, so you can be sure that we have the best recipes for you to try.
+                </p>
+            </div>
+
+            <div class="content__videos">
+                <div class="video__item">
+                    <iframe src="https://www.youtube.com/embed/rEdl2Uetpvo?si=QlL_DPSlZT9HBf7H"
+                        title="Perfect Chocolate Chip" frameborder="0" allow="autoplay, gyroscope" allowfullscreen>
+                    </iframe>
+                    <div class="video__info">
+                        <h4 class="video__title">How To Make Perfect Chocolate Chip Cookies</h4>
+                        <ul class="video_details">
+                            <li>Author: NYT Cooking</li>
+                            <li>View: 2M</li>
+                            <li>Duration: 23:54m</li>
+                        </ul>
+                    </div>
+                    <div class="video__footer">
+                        <button class="video__btn">Share</button>
+                    </div>
+                </div>
+                <div class="video__item">
+                    <iframe src="https://www.youtube.com/embed/_Q0FYoCl4Cs?si=hjf8KgCvX6HrslA8"
+                        title="Hommade Cinnamon Rolls" frameborder="0" allow="autoplay, gyroscope" allowfullscreen>
+                    </iframe>
+                    <div class="video__info">
+                        <h4 class="video__title">How To Make Homemade Cinnamon Rolls • Tasty</h4>
+                        <ul class="video_details">
+                            <li>Author: NYT Cooking</li>
+                            <li>View: 2M</li>
+                            <li>Duration: 23:54m</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="video__item">
+                    <iframe src="https://www.youtube.com/embed/aFaQ2cxYxbM?si=EPpzQH0xO9jY7kk"
+                        title="Hommade Glazed Donuts" frameborder="0" allow="autoplay, gyroscope" allowfullscreen>
+                    </iframe>
+                    <div class="video__info">
+                        <h4 class="video__title">Homemade Glazed Donuts</h4>
+                        <ul class="video_details">
+                            <li>Author: NYT Cooking</li>
+                            <li>View: 2M</li>
+                            <li>Duration: 23:54m</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="video__item">
+                    <iframe src="https://www.youtube.com/embed/Oz3jorq9QKY?si=GKzn6ssRPWQB3IE7"
+                        title="Chocolate Cake Recipe" frameborder="0" allow="autoplay, gyroscope" allowfullscreen>
+                    </iframe>
+                    <div class="video__info">
+                        <h4 class="video__title">The Only Chocolate Cake Recipe You'll Ever Need With Claire Saffitz
+                        </h4>
+                        <ul class="video_details">
+                            <li>Author: NYT Cooking</li>
+                            <li>View: 2M</li>
+                            <li>Duration: 23:54m</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
