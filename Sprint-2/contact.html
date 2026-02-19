@@ -1,61 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        @keyframes slide-in {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        @keyframes move-item {
-            0% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(450px);
-                background-color: cyan;
-            }
-
-            50% {
-                transform: translate(450px, 450px);
-                background-color: magenta;
-            }
-
-            75% {
-                transform: translate(0, 450px);
-                background-color: tomato;
-            }
-
-            100% {
-                transform: translate(0,0);
-                background-color: royalblue;
-            }
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .animated {
-            width: 150px;
-            height: 150px;
-            background-color: royalblue;
-            animation: move-item 8s ease-in-out;
+        .content {
+            width: 85%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
         }
 
-        
+        .contact__form {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form__item{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .form__item label {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form__item input,
+        .form__item select,
+        .form__item textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form__buttons {
+            display: flex;
+            gap: 10px;
+            padding: 10px 0;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn {
+            color: white;
+             border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn--reset {
+            background-color: #7c7c7c;
+        }
+
+        .btn--success {
+            background-color: #4CAF50;
+        }
+
+        .btn--error {
+            background-color: #f44336;
+        }
+
+        .btn--warning {
+            background-color: #ff9800;
+        }
+
     </style>
 </head>
+
 <body>
 
-    <div class="animated"></div>
+    <section class="container">
+        <div class="content">
+            <h1>Contact Us</h1>
+            <p>Feel free to reach out to us with any questions or inquiries you may have. We are here to help and provide
+                you with the best service possible.</p>
     
+            <div class="contact__form">
+                <div class="form">
+                    <form action="#" method="POST">
+                        <div class="form__item">
+                            <label for="username">username: </label>
+                            <input type="text" id="username" name="username" placeholder="Enter your username" minlength="3"
+                                maxlength="25" required />
+                        </div>
+    
+                        <div class="form__item">
+                            <label for="password">password: </label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" minlength="6"
+                                maxlength="25" required />
+                        </div>
+    
+                        <div class="form__item">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" />
+                        </div>
+    
+                        <div class="form__item">
+                            <label for="birthday">Birthday:</label>
+                            <input type="date" id="birthday" name="birthday" placeholder="Enter your birthday" min="1950-01-01"
+                                max="2026-12-31" />
+                        </div>
+    
+                        <div class="form__item">
+                            <label for="yearsofExperience">Years of Experience:</label>
+                            <input type="number" id="yearsofExperience" name="yearsofExperience" placeholder="Enter your years of experience"
+                                min="4" max="30" />
+                        </div>
+    
+                        <div class="form__item">
+                            <label for="phonenumber">Phone Number:</label>
+                            <input type="tel" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" />
+                        </div>
+    
+                        <div class="form__item">
+                            <label for="picture">Upload Picture:</label>
+                            <input type="file" id="picture" name="picture" placeholder="Upload your picture" />
+                        </div>
+    
+                        <div class="form__item">
+                            <label for="country">Country:</label>
+                            <select id="country" name="country">
+                                <option value="us">United States</option>
+                                <option value="ca">Canada</option>
+                                <option value="mx">Mexico</option>
+                                <option value="gt">Guatemala</option>
+                            </select>
+                        </div>
+    
+                        <div class="form__item">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" placeholder="Enter your message" rows="5" cols="50"></textarea>
+                        </div>
+    
+    
+                        <div class="form__buttons">
+                            <input type="submit" value="Submit" />
+                            <button type="reset" class="btn btn--reset">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
+
 </html>
